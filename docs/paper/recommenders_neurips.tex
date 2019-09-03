@@ -1,0 +1,152 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2019
+
+% ready for submission
+% \usepackage{neurips_2019}
+
+% to compile a preprint version, e.g., for submission to arXiv, add add the
+% [preprint] option:
+%     \usepackage[preprint]{neurips_2019}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+     \usepackage[final]{neurips_2019}
+
+% to avoid loading the natbib package, add option nonatbib:
+%     \usepackage[nonatbib]{neurips_2019}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+
+\title{Microsoft-Recommenders: Best Practices for Production-Ready Recommendation Systems}
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+\author{%
+  Name \\
+  Microsoft, Azure Global \\
+  2 Kingdom St, London W2 6BD, UK \\
+  \texttt{name@microsoft.com} \\
+  % examples of more authors
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \AND
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Recommendation systems have become one of the most widely applied areas of machine learning in modern business and 
+have attracted great interest in machine learning research. Recommendation algorithms are involved in a large percentage of 
+consumer purchases in today's e-commerce production systems. We present {\em Microsoft-Recommenders},  
+an open-source Github repository for helping researchers, developers and non-experts in general to select, prototype, train and
+bring to production a variety of state-of-the-art recommendation algorithms.
+A focus of this repository is on {\em best practices} in development of recommendation systems and Python software for machine learning.
+We have also incorporated learnings from our experience with recommendation systems in production, in order to enhance ease of use; speed of 
+implementation and deployment; ease of evaluation; scalability and performance. 
+The repository has also received contributions from the broader community of researchers and data science practitioners. 
+In turn, the repository is a useful aid to anyone in this community and simplifies development and application of recommendation algorithms.
+\end{abstract}
+
+\section{Introduction}
+
+\input{intro}
+
+\section{Overall Approach and Technologies}
+
+\input{overall}
+
+\section{Coding Guidelines}
+
+\input{coding}
+
+\section{System Design}
+
+\input{system}
+
+\section{Structure of the Repository}
+
+Microsoft-Recommenders is based on best practices for building recommendation systems, which have been learned from application with production-ready systems.
+As a consequence, we have followed an {\em end-to-end} approach, which is not limited to just the training of an algorithm, but encompasses the following components, typical in a recommendation pipeline:
+
+\begin{itemize}
+\item Data preparation: Preparing and loading data for each recommender algorithm
+\item Model: Building models using various classical and deep learning recommender algorithms such as Alternating Least Squares (ALS) or eXtreme Deep Factorization Machines (xDeepFM).
+\item Evaluate: Evaluating algorithms with offline metrics
+\item Model Select and Optimize: Tuning and optimizing hyperparameters for recommender models
+\item Operationalize: Operationalizing models in a production environment on Azure
+\end{itemize}
+
+Several utilities are provided in \url{https://github.com/microsoft/recommenders/blob/master/reco_utils} to support common tasks such as loading datasets in the format expected by different algorithms, evaluating model outputs, and splitting training/test data. Implementations of several state-of-the-art algorithms are provided for self-study and customization in one's own applications.
+
+\subsection{Data Preparation}
+
+\input{dataprep}
+
+\subsection{Recommendation Algorithms}
+
+\input{algos}
+
+\subsection{Offline Evaluation}
+
+\input{evaluation} 
+
+\subsection{Model Selection}
+
+\input{tuning}
+
+\subsection{Operationalization}
+
+\input{o16n}
+
+\subsection{Utilities}
+
+\input{utils}
+
+
+\subsection{Conclusions - Learnings}
+
+\input{learnings}
+
+
+\subsubsection*{Acknowledgments}
+
+
+\section*{References}
+
+
+
+\end{document}

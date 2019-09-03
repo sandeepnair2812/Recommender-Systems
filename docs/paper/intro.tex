@@ -1,0 +1,44 @@
+Recommendation systems have become ubiquitous in modern business and have attracted a great deal of interest in academic research.
+According to McKinsey \& Co,
+“35\% of what consumers purchase on Amazon and 75\% of what they watch on Netflix come from recommendations algorithms" 
+\cite{mckinsey}.
+Recommendation appears almost everywhere in today's e-commerce, in which consumers typically have a large variety of products or other
+options to choose from. Examples include recommendation of brands, news, prodcuts etc. The goal of business is usually to increase revenue,
+customer engagement and satisfaction, induce networking effects etc. Another related goal may be to improve prediction of the metrics of interest, 
+so that better business decisions about advertising spend and internet traffic can be made. In addition, vendors want to understand better their customers
+or segments of customers in order to address them with more personalized and suitable marketing campaigns.
+
+The history of recommendation algorithms goes back to the 1990s \cite{Tapestry, GroupLens}
+with the first content based and collaborative filtering methods.
+Around 2006 the Netflix prize \cite{} gave a boost to research in the area, in particular 
+factorization-based models \cite{Koren,SVD++,PMF}.
+Later on, more hybrid methods involving machine learning methods as well as factorization have appeared
+\cite{FM,pairwise}.
+In the past few years, deep learning methods have started to be applied to this area too
+\cite{PNN,WideDeep,DeepFM,xDeepFM,NCF}.
+Moreover, recommendation is a broad area of machine learning and includes a diverse set of tasks and goals, such as 
+explainable recommendation \cite{}, knowledge enhanced recommendation \cite{},
+reinforcement learning \cite{}, transfer learning \cite{} etc.
+
+In practice, however, application of recommendation algorithms has found significant challenges. 
+First, there is limited reference and guidance for building a recommendation system on scale to support
+enterprise grade scenarios. In addition, off-the-shelf packages, tools and modules may be fragmented and not compatible with
+each other. While there are new algorithms being published continuously in research, many practitioners may not have 
+expertise or time to implement and deploy these algorithms in production.
+
+In response to these challenges, our team has developed the Microsoft-Recommenders
+Github repository (\url{https://github.com/Microsoft/Recommenders}).
+The development of this repository is a {\em collaborative effort} of machine learning researchers and data scientists from the 
+Azure Cloud and Microsoft Research organizations, as well as contributors from the outside academic researchers and data scientists.
+Broadly speaking, it contains 
+\begin{itemize}
+\item
+Utilities: modular functions for model creation, data manipulation, evaluation, etc.
+\item
+Algorithms: SVD, SAR, ALS, NCF, Wide\&Deep , xDeepFM , DKN,
+\item
+Notebooks: HOW TO examples for end to end recommender building.
+\end{itemize}
+
+In the following, we summarize the content of Microsoft-Recommenders and present the approach and the principles we have followed
+for its development.
