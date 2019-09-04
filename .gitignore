@@ -148,3 +148,12 @@ ml-20m/
 *.item
 *.pkl
 requirements.txt
+*.out
+*.pdf
+*.bbl
+*.blg
+.*.tex.ini
+*.aux
+
+
+
