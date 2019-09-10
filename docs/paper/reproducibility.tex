@@ -3,21 +3,18 @@
 One of our main goals in building Microsoft-Recommenders has been to enhance several aspects of research and data science processes.
 In particular, we provide utilities for tasks which are common and repetitive when building recommendations pipelines.  
 {\em Data preparation} is the first stage of such a pipeline and involves loading data sets in the right format and generating training, validation and test sets from it.
-We provide utilities which make it simple to download the Movielens \cite{movielens}, Criteo \cite{criteo} and Wikidata \cite{wikidata} data sets. For example, the following code loads one of 
-the Movielens data sets to a Pandas \cite{pandas} data frame
+We provide utilities which make it simple to download the Movielens \cite{movielens}, Criteo \footnote{\url{https://labs.criteo.com/2013/12/download-terabyte-click-logs/
+}} and Wikidata \cite{wikidata} data sets. For example, the following code loads 
+the Movielens 100K data set to a Pandas data frame
 \begin{verbatim}
 from reco_utils.dataset import movielens
 data = movielens.load_pandas_df(size="100k", 
-    header=['UserId', 'MovieId', 'Rating', 'Timestamp'], 
-    title_col='Title')
+    header=['UserId', 'MovieId', 'Rating', 'Timestamp'], title_col='Title')
 \end{verbatim}
-and to a PySpark \cite{pyspark} data frame
-\begin{verbatim}
-dfs = movielens.load_spark_df(spark=spark, size="100k", schema=schema)
-\end{verbatim}
+To load the data to a PySpark data frame the syntax is similar and uses the function \verb!movielens.load_spark_df()!.
 
-Data splitting can also be done in one line. For example, the following code performs two types of 
-splits of the data, the first one by random sampling and the second by splitting each user's data according to the timestamp: 
+Splitting a data set can also be done in one line. For example, the following code performs two types of 
+splits, the first one by random sampling and the second by splitting each user's data according to the timestamp: 
 \begin{verbatim}
 from reco_utils.dataset.python_splitters import python_chrono_split, 
     python_random_split
@@ -25,36 +22,31 @@ data_train, data_validate, data_test = python_random_split(data,
     ratio=[0.6, 0.2, 0.2])
 data_train, data_test = python_chrono_split(data, ratio=0.7, 
     filter_by="user", col_user="UserId", col_item="MovieId", 
-    col_timestamp="Timestamp"
-)
+    col_timestamp="Timestamp")
 \end{verbatim}
 There are also methods for stratified splitting (by user or item) and chronological splitting without stratification. 
 There are versions of the splitter methods for both Pandas and PySpark.
 
-Training one of the algorithms included in the repository is also straightforward. To this end, we use an interface similar to Scikit-Learn \cite{pedregosa2011scikit} 
+Training any of the algorithms included in the repository is also straightforward. To this end, we use an interface similar to Scikit-Learn \cite{pedregosa2011scikit} 
 with algorithms defined as classes implementing \verb fit() and \verb predict() methods. For example, training a Neural Collaborative Filtering \cite{he2017neural} model
 can be done as follows
 \begin{verbatim}
 from reco_utils.recommender.ncf.ncf_singlenode import NCF
-model = NCF (
-    n_users=data.n_users, n_items=data.n_items, model_type="NeuMF",
-    n_factors=4, layer_sizes=[16,8,4], n_epochs=100,
-    batch_size=256, learning_rate=1e-3, verbose=10
-)
-model.fit(data)
+model = NCF(n_users=data.n_users, n_items=data.n_items, model_type="NeuMF",
+    n_factors=4, layer_sizes=[16,8,4], n_epochs=100, batch_size=256, 
+    learning_rate=1e-3, verbose=10)
+model.fit(data_train)
 predictions = [[row.userID, row.itemID, model.predict(row.userID, row.itemID)]
-               for (_, row) in test.iterrows()]
-top_k = model.recommend_k_items(test, remove_seen=True)
+               for (_, row) in data_test.iterrows()]
 \end{verbatim}
 
 Another modular part of the recommendation process is the evaluation of metrics between two data frames consisting of users, items and numerical values 
 (predicted vs. ground truth). There is a distinction between rating metrics (such as mean squared error and accuracy) and ranking metrics 
-(such as top-k precision and recall). As an example, the code for computing precision looks like
+(such as top-k precision and recall). For example, the code for computing precision looks like
 \begin{verbatim}
-from reco_utils.evaluation.python_evaluation import precision_at_k
-eval_precision = precision_at_k(test, top_k, col_user='UserId', 
-    col_item='MovieId', col_rating='Rating', col_prediction='Prediction', 
-    k=10)
+from reco_utils.evaluation.python_evaluation import rmse
+eval_rmse = rmse(data_test, predictions, col_user='UserId', 
+    col_item='MovieId', col_rating='Rating', col_prediction='Prediction')
 \end{verbatim}
  
 These interfaces hide all the implementation details of the algorithms involved, while providing access to the necessary parameterization.
