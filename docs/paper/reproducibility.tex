@@ -42,7 +42,7 @@ predictions = [[row.userID, row.itemID, model.predict(row.userID, row.itemID)]
 
 Another modular part of the recommendation process is the evaluation of metrics between two data frames consisting of users, items and numerical values 
 (predicted vs. ground truth). There is a distinction between rating metrics (such as mean squared error and accuracy) and ranking metrics 
-(such as top-k precision and recall). For example, the code for computing precision looks like
+(such as top-k precision and recall). For example, the code for computing root mean squared error looks like
 \begin{verbatim}
 from reco_utils.evaluation.python_evaluation import rmse
 eval_rmse = rmse(data_test, predictions, col_user='UserId', 
