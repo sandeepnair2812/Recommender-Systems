@@ -154,6 +154,7 @@ requirements.txt
 *.blg
 .*.tex.ini
 *.aux
+*.gz
 
 
 
