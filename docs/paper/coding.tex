@@ -47,13 +47,13 @@ will tend to code based on classes as defined in \cite{meng2016mllib}.
 
 The test pipeline in Recommenders is slightly more complicated than in most machine learning
 libraries \cite{abadi2016tensorflow,paszke2017automatic,pedregosa2011scikit,ke2017lightgbm}.
-Apart from the standard unit tests with PyTest \cite{krekel2004pytest} of the utilites, 
-the notebooks are also tested. For performing these tests we use Papermill 
-\cite{nteract2017papermill}, which allows to programmatically execute a notebook. The
-unit tests are executed in every pull request and make sure that the utilities and 
+Apart from standard {\em unit tests} with PyTest \cite{krekel2004pytest} of the utilities, 
+the Jupyter notebooks are also tested. To perform these tests we use Papermill 
+\footnote{\url{https://github.com/nteract/papermill}}, which allows for programmatic execution of a notebook. The
+unit tests are executed in every pull request and ensure that the utilities and 
 notebooks run without an error.
 
-We introduce nightly tests composed by smoke and integration tests 
+We have also included nightly tests composed by {\em smoke} and {\em integration tests}
 \cite{gonzalez-fierro2018beginners}. In the smoke tests, we run the notebooks with a 
 small dataset or a small number of epochs to make sure that, apart from running, they 
 provide reasonable metrics. In the integration tests we use bigger dataset with more 
