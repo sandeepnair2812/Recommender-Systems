@@ -154,3 +154,7 @@ ml-20m/
 *.gif
 *.jpeg
 *.gz
+*.out
+*.bbl
+*.blg
+*.aux
