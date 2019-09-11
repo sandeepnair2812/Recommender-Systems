@@ -144,19 +144,6 @@ ml-20m/
 *.jar
 *.item
 *.pkl
-<<<<<<< HEAD
-requirements.txt
-*.out
-*.pdf
-*.bbl
-*.blg
-.*.tex.ini
-*.aux
-*.gz
-
-
-
-=======
 *.txt
 *.pdf
 .pretrain
@@ -166,4 +153,4 @@ requirements.txt
 *.jpg
 *.gif
 *.jpeg
->>>>>>> staging
+*.gz
