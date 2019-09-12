@@ -25,17 +25,17 @@ Scikit-learn \cite{pedregosa2011scikit} or LigthGBM \cite{ke2017lightgbm}.
 One example to illustrate EBD is the definition of the metrics interface in Python and 
 PySpark. The definition in Python as based of functions:
 
-\begin{verbatim}
+\begin{minted}{python}
     from reco_utils.evaluation.python_evaluation import rmse
     result = rmse(df_test, df_predictions)
-\end{verbatim}
+\end{minted}
 
 whereas the definition in PySpark is based of classes:
-\begin{verbatim}
+\begin{minted}{python}
     from reco_utils.evaluation.spark_evaluation import SparkRatingEvaluation
     rating_eval = SparkRatingEvaluation(df_test, df_prediction)
     result = rating_eval.rmse()
-\end{verbatim}
+\end{minted}
 
 The selection of classes in PySpark and functions in Python, instead of having a unified
 interface, is derived from the EDB principle. Our customers and machine learning users
@@ -68,20 +68,26 @@ responsibility} or the Zen of Python\footnote{\url{https://www.python.org/dev/pe
 
 The following example illustrates the pattern \textit{explicit is better than implicit}.
 An implicit read function would be: 
-\begin{verbatim}
+\begin{minted}{python}
     def read(filename):
         # code for reading a csv or json
         # depending on the file extension
-\end{verbatim}
+\end{minted}
+
+\begin{minted}{python}
+    def read(filename):
+        # code for reading a csv or json
+        # depending on the file extension
+\end{minted}
 
 whereas the explicit example would be:
-\begin{verbatim}
+\begin{minted}{python}
     def read_csv(filename):
         # code for reading a csv
 
     def read_json(filename):
         # code for reading a json
-\end{verbatim}
+\end{minted}
 
 
 

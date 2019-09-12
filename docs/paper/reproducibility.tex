@@ -6,16 +6,16 @@ In particular, we provide utilities for tasks which are common and repetitive wh
 We provide utilities which make it simple to download the Movielens \cite{movielens}, Criteo \footnote{\url{https://labs.criteo.com/2013/12/download-terabyte-click-logs/
 }} and Wikidata \cite{wikidata} data sets. For example, the following code loads 
 the Movielens 100K data set to a Pandas data frame
-\begin{verbatim}
+\begin{minted}{python}
 from reco_utils.dataset import movielens
 data = movielens.load_pandas_df(size="100k", 
-    header=['UserId', 'MovieId', 'Rating', 'Timestamp'], title_col='Title')
-\end{verbatim}
+    header=["UserId", "MovieId", "Rating", "Timestamp"], title_col="Title")
+\end{minted}
 To load the data to a PySpark data frame the syntax is similar and uses the function \verb!movielens.load_spark_df()!.
 
 Splitting a data set can also be done in one line. For example, the following code performs two types of 
-splits, the first one by random sampling and the second by splitting each user's data according to the timestamp: 
-\begin{verbatim}
+splits, the first one by random sampling and the second by splitting each user"s data according to the timestamp: 
+\begin{minted}{python}
 from reco_utils.dataset.python_splitters import python_chrono_split, 
     python_random_split
 data_train, data_validate, data_test = python_random_split(data, 
@@ -23,14 +23,14 @@ data_train, data_validate, data_test = python_random_split(data,
 data_train, data_test = python_chrono_split(data, ratio=0.7, 
     filter_by="user", col_user="UserId", col_item="MovieId", 
     col_timestamp="Timestamp")
-\end{verbatim}
+\end{minted}
 There are also methods for stratified splitting (by user or item) and chronological splitting without stratification. 
 There are versions of the splitter methods for both Pandas and PySpark.
 
 Training any of the algorithms included in the repository is also straightforward. To this end, we use an interface similar to Scikit-Learn \cite{pedregosa2011scikit} 
 with algorithms defined as classes implementing \verb fit() and \verb predict() methods. For example, training a Neural Collaborative Filtering \cite{he2017neural} model
 can be done as follows
-\begin{verbatim}
+\begin{minted}{python}
 from reco_utils.recommender.ncf.ncf_singlenode import NCF
 model = NCF(n_users=data.n_users, n_items=data.n_items, model_type="NeuMF",
     n_factors=4, layer_sizes=[16,8,4], n_epochs=100, batch_size=256, 
@@ -38,16 +38,16 @@ model = NCF(n_users=data.n_users, n_items=data.n_items, model_type="NeuMF",
 model.fit(data_train)
 predictions = [[row.userID, row.itemID, model.predict(row.userID, row.itemID)]
                for (_, row) in data_test.iterrows()]
-\end{verbatim}
+\end{minted}
 
 Another modular part of the recommendation process is the evaluation of metrics between two data frames consisting of users, items and numerical values 
 (predicted vs. ground truth). There is a distinction between rating metrics (such as mean squared error and accuracy) and ranking metrics 
 (such as top-k precision and recall). For example, the code for computing root mean squared error looks like
-\begin{verbatim}
+\begin{minted}{python}
 from reco_utils.evaluation.python_evaluation import rmse
-eval_rmse = rmse(data_test, predictions, col_user='UserId', 
-    col_item='MovieId', col_rating='Rating', col_prediction='Prediction')
-\end{verbatim}
+eval_rmse = rmse(data_test, predictions, col_user="UserId", 
+    col_item="MovieId", col_rating="Rating", col_prediction="Prediction")
+\end{minted}
  
 These interfaces hide all the implementation details of the algorithms involved, while providing access to the necessary parameterization.
 In this way, a recommendation process can be completely replicable and reproducible from beginning to end. Furthermore, any randomization 
