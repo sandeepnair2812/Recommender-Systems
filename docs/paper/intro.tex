@@ -31,13 +31,14 @@ and includes a wide variety of approaches, such as {\em collaborative filtering}
 %{\em reinforcement learning} \cite{rl_explainable,rl,rl_negative} etc.
 
 In practice, however, application of recommendation algorithms has encountered significant challenges. 
-First, there are limited references and guidance for building recommendation systems at scale to support
+First, there are {\em limited references and guidance} for building recommendation systems at scale to support
 enterprise grade scenarios. In addition, even though there exist several off-the-shelf packages, tools and modules, they tend to focus on specific aspects of recommendations 
-and may not be compatible with each other. Whereas new algorithms are being published continuously in research, in the field many practitioners may lack the 
-expertise or time to implement and deploy these algorithms in production. On the other side, researchers, when applying their methods to real world scenarios, may lack experience of the domain of interest
-or awareness of the best practices with respect to data science and software engineering. Thus, it can be time-consuming to build a new recommendation system from an
-algorithm, even when avaialble as software, or to incorporate it into an existing recommendations pipeline. It can also be time-consuming to build a prototype of a new or existing algorithm and to 
-compare the performance of different algorithms on the same recommendations task. 
+and may {\em not be compatible} with each other. Whereas new algorithms are being published continuously in research, in the field many practitioners may lack the 
+expertise or time to implement and deploy these algorithms in production. 
+On the other side, researchers, when applying their methods to real world scenarios, may lack experience of the domain of interest
+or awareness of the best practices with respect to data science and software engineering. Thus, it can be {\em time-consuming} to build a new recommendation system from an
+algorithm, even when available as software, or to incorporate it into an existing recommendations pipeline. It can also be time-consuming to build a prototype of a new or existing algorithm and to 
+{\em compare the performance} of different algorithms on the same recommendations task. 
 
 In response to these challenges, our team has developed {\em Microsoft Recommenders}, an open-source 
 Github repository available at \url{https://github.com/Microsoft/Recommenders}.
@@ -50,15 +51,15 @@ Utilities: modular functions for data manipulation, evaluation etc.
 \item
 Algorithms: functions for model training and prediction / recommendation, including factorization methods, deep learning, hybrid methods etc.
 \item
-Jupyter notebooks: how to examples for building end-to-end recommenders, hands-on familiarization with the algorithms and quick prototyping. 
+Jupyter notebooks: how-to examples for building end-to-end recommenders, hands-on familiarization with the algorithms and quick prototyping. 
 \end{itemize}
 The development approach we follow benefits from existing best practices and software libraries already avaliable in the recommendations community.
-In addition, we have strived to make the repository modular and easy to understand and use, so that researchers and practitioners can use it to build
+In addition, we have strived to make the repository modular and easy to understand and use, so that researchers and practitioners can easily build
 new or customized algorithms, utilities and notebooks.
 
 In the following sections, we summarize the content of {\em Microsoft Recommenders} and present the approach and the principles we have followed
 for its development. In Section 2, we provide an overview of the structure and content of the repository. In Section 3, we explain our development approach, some of
-the design decisions and show how practitioners are enabled to use and contribute to the repository productively. In Section 4, we discuss how the recommendations
-algorithms can be brought in operation and how to incorporate them within end-to-end pipelines, based on our experience with real-life production systems. 
+the design decisions and show how practitioners are enabled to use and contribute to the repository productively. In Section 4, we discuss how recommendations
+algorithms can be brought to operation and how they can be incorporated within end-to-end pipelines, based on our experience with real-life production systems. 
 Finally, in Section 5, we conclude with some insights and learnings we have gained from the practical application of the recommendations repository.
 
