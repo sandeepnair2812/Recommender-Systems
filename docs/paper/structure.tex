@@ -1,22 +1,25 @@
 \section{Recommenders Repository Overview}
 
-The repository is open-source under the MIT License and contributions that follow the guidelines are encouraged.  
+The repository is open-sourced under the MIT License and contributions that follow the guidelines are encouraged.  
 The development follows standard Github practices such as issues, milestones and pull requests.
 
-All the algorithms and utilities have been written in the Python programming language and the demostrations are 
-in the form of Jupyter notebooks \cite{jupyter}.
+All the algorithms and utilities have been written in the Python programming language and the demonstrations are 
+in the form of Jupyter notebooks.
 
-The platforms supported are Linux and Windows, on a local computer, on premises, or on the Azure Cloud \cite{azure}, depending on availability of resources.
-Some of the algorithms can take advantage of GPU resources if available and some others require a Spark environment \cite{spark}.
+The platforms supported are Linux and Windows. Some of the algorithms can take advantage of GPU resources if available 
+and some others require a Spark environment.
 
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth,keepaspectratio]{platform_diagram_crop.pdf}
-  \caption{Microsoft Recommenders structure diagram. Layers from the bottom to the top support the underlying infrastructure, build pipeline, recommendation pipeline tasks, and example notebooks and utility functions.}
+  \caption{Microsoft Recommenders structure diagram. Layers from the bottom to the top support the underlying 
+  infrastructure, build pipeline, recommendation pipeline tasks, and example notebooks and utility functions.}
 \end{figure}
 
-Microsoft-Recommenders is based on best practices for building recommendation systems, which have been learned from application with production-ready systems.
-As a consequence, we have followed an {\em end-to-end} approach, which is not limited to just the training of an algorithm, but encompasses the following components, typical in a recommendation pipeline:
+Microsoft Recommenders is based on best practices for building recommendation systems, which have been learned from 
+application with production-ready systems. As a consequence, we have followed an {\em end-to-end} approach, which 
+is not limited to just the training of an algorithm, but encompasses the following components, typical in a 
+recommendation pipeline:
 
 \begin{itemize}
 \item Data preparation: Preparing and loading data for each recommender algorithm

@@ -43,22 +43,49 @@ that code in Python will naturally choose a function when creating metrics, as i
 defined in Scikit-learn \cite{pedregosa2011scikit}. On the contrary, PySpark users 
 will tend to code based on classes as defined in \cite{meng2016mllib}. 
 
-\subsubsection{Test Driven Development}
+\subsubsection{Test Pipeline}
 
 The test pipeline in Recommenders is slightly more complicated than in most machine learning
 libraries \cite{abadi2016tensorflow,paszke2017automatic,pedregosa2011scikit,ke2017lightgbm}.
 Apart from standard {\em unit tests} with PyTest \cite{krekel2004pytest} of the utilities, 
 the Jupyter notebooks are also tested. To perform these tests we use Papermill 
-\footnote{\url{https://github.com/nteract/papermill}}, which allows for programmatic execution of a notebook. The
+\cite{nteract2017papermill}, which allows for programmatic execution of a notebook. The
 unit tests are executed in every pull request and ensure that the utilities and 
 notebooks run without an error.
 
 We have also included nightly tests composed by {\em smoke} and {\em integration tests}
 \cite{gonzalez-fierro2018beginners}. In the smoke tests, we run the notebooks with a 
 small dataset or a small number of epochs to make sure that, apart from running, they 
-provide reasonable metrics. In the integration tests we use bigger dataset with more 
-epochs and test that the metrics are what we expect. These tests are once a day over 
-night and make sure that the repo is fully functional.
+provide reasonable metrics. In the following example we show how to make sure that
+the precision at k of SAR algorithm with Movielens 100k dataset is tested.
+
+\begin{minted}{python}
+    TOL = 0.05
+    @pytest.mark.smoke
+    def test_sar_single_node_smoke(notebooks):
+        notebook_path = notebooks["sar_single_node"]
+        pm.execute_notebook(
+            notebook_path,
+            OUTPUT_NOTEBOOK,
+            parameters=dict(TOP_K=10, MOVIELENS_DATA_SIZE="100k"),
+        )
+        results = pm.read_notebook(OUTPUT_NOTEBOOK).dataframe.set_index("name")["value"]
+        assert results["precision"] == pytest.approx(0.326617179, TOL)
+\end{minted}
+
+The smoke tests are a small version of the integration tests. While the integration tests
+use bigger datasets with more epochs and can take from 30min to several hours, the smoke tests are quicker and
+will check the correctness of all the notebooks before executing the integration tests.
+
+At the time of writing we have over 400 tests, between Windows and Linux. Furthermore, we have two group of tests,
+one for master branch and one for staging branch, which is our development branch.
+
+The existence of a development branch, staging, is tightly related to the test pipeline. The paradigm is similar to
+production and pre-production environments. The production branch is master, while the pre-preproduction branch is staging.
+The objective is to make sure that the code in master always work. When making a pull request, we will
+do it against staging, instead of master. The nightly tests will execute in staging and make sure that the new code 
+works as expected, apart from not failing. When staging is stable, we will make a pull request to master.  
+
 
 \subsubsection{Other Design Patterns}
 
