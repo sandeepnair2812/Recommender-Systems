@@ -1,26 +1,34 @@
 \section{Introduction}
 
-Recommendation systems have become ubiquitous in modern business and have attracted a great deal of interest in academic research.
-According to McKinsey \& Co,
-“35\% of what consumers purchase on Amazon and 75\% of what they watch on Netflix come from recommendations algorithms" 
-\cite{mckinsey}.
-Recommendations appear almost everywhere in today's e-commerce, in which consumers typically have a large variety of products or other
-options to choose from. Examples include recommendation of brands, news, consumer products, media content, 
-travel packages etc. In such scenarios the goal of business is usually to increase revenue,
-customer engagement and satisfaction, induce networking effects etc. Another related goal may be to improve prediction of the metrics of interest, 
-so that better business decisions about advertising spend and internet traffic can be made. In addition, vendors want to better understand their customers,
-or segments of customers, in order to address them with more personalized and suitable marketing campaigns.
+Recommendation systems have become ubiquitous in modern business, 
+%and have attracted a great deal of interest in academic research.
+%According to McKinsey \& Co,
+%“35\% of what consumers purchase on Amazon and 75\% of what they watch on Netflix come from recommendations algorithms" 
+%\cite{mckinsey}.
+%Recommendations appear almost everywhere in today's e-commerce, in which consumers typically have a large variety of products or other
+%options to choose from. 
+examples of which include recommendation of brands, news, consumer products, media content, 
+travel packages and many others. In such scenarios, the goals of business usually are to increase {\em revenue},
+{\em customer engagement and satisfaction}, make better {\em predictions}, 
+%so that better business decisions about advertising spend and internet traffic can be made. In addition, vendors want to 
+gain {\em understanding about customers} etc.
+%or segments of customers, in order to address them with more personalized and suitable marketing campaigns.
+In machine learning research, the literature on recommendations goes back to the 1990s \cite{Tapestry, grouplens}
+and includes a wide variety of approaches, such as {\em collaborative filtering} \cite{bell_lessons,koren2009matrix,SVD++,PMF}, 
+{\em content-based} and {\em hybrid} methods \cite{rendle,ffm,bpr,pairwise,multiverse}, 
+{\em deep learning} methods \cite{PNN,cheng2016wide,lian2018xdeepfm,he2017neural,youtube,nvidia,survival},
+ {\em explainable recommendation} \cite{explainable,rl_explainable}, {\em reinforcement learning} \cite{rl_explainable,rl,rl_negative} etc.
 
-The history of recommendation algorithms goes back to the 1990s \cite{Tapestry, grouplens}
-when the first {\em content-based and collaborative filtering} methods appeared.
-Around 2006, the Netflix prize \cite{netflix} provided an additional boost to research in the area, in particular leading to significant advances in factorization-based models \cite{bell_lessons,koren2009matrix,SVD++,PMF}.
-Later on, more {\em hybrid methods} incorporating standard supervised learning into recommendations as well as more hybrid factorization models have appeared
-\cite{rendle,ffm,bpr,pairwise,multiverse}.
-In more recent years, {\em deep learning} methods, after their success in other areas of machine learning, have been applied increasingly in the area of recommendations
-\cite{PNN,cheng2016wide,lian2018xdeepfm,he2017neural,youtube,nvidia,survival}.
-Moreover, the objectives in recommendation problems are broader than, say, prediction accuracy or precision of recommendations, and include a diverse set of tasks and goals such as 
-{\em explainable recommendation} \cite{explainable,rl_explainable}, corrections for {\em biases} and offline {\em evaluation} \cite{mnar,offline,debiasing,counterfactual},
-{\em reinforcement learning} \cite{rl_explainable,rl,rl_negative} etc.
+%The history of recommendation algorithms goes back to the 1990s \cite{Tapestry, grouplens}
+%when the first {\em content-based and collaborative filtering} methods appeared.
+%Around 2006, the Netflix prize \cite{netflix} provided an additional boost to research in the area, in particular leading to significant advances in factorization-based models \cite{bell_lessons,koren2009matrix,SVD++,PMF}.
+%Later on, more {\em hybrid methods} incorporating standard supervised learning into recommendations as well as more hybrid factorization models have appeared
+%\cite{rendle,ffm,bpr,pairwise,multiverse}.
+%In more recent years, {\em deep learning} methods, after their success in other areas of machine learning, have been applied increasingly in the area of recommendations
+%\cite{PNN,cheng2016wide,lian2018xdeepfm,he2017neural,youtube,nvidia,survival}.
+%Moreover, the objectives in recommendation problems are broader than, say, prediction accuracy or precision of recommendations, and include a diverse set of tasks and goals such as 
+%{\em explainable recommendation} \cite{explainable,rl_explainable}, corrections for {\em biases} and offline {\em evaluation} \cite{mnar,offline,debiasing,counterfactual},
+%{\em reinforcement learning} \cite{rl_explainable,rl,rl_negative} etc.
 
 In practice, however, application of recommendation algorithms has encountered significant challenges. 
 First, there are limited references and guidance for building recommendation systems at scale to support
@@ -33,8 +41,8 @@ compare the performance of different algorithms on the same recommendations task
 
 In response to these challenges, our team has developed {\em Microsoft Recommenders}, an open-source 
 Github repository available at \url{https://github.com/Microsoft/Recommenders}.
-The development of this repository is an ongoing {\em collaborative effort} of machine learning researchers and data scientists from the 
-Azure Cloud and Microsoft Research organizations, as well as contributors from the outside community such as academic researchers and data scientists.
+The development of this repository is an ongoing {\em collaborative effort} of machine learning researchers and data scientists from 
+various groups in Microsoft, as well as contributors from the broader community.
 Broadly speaking, the repository mainly contains 
 \begin{itemize}
 \item
