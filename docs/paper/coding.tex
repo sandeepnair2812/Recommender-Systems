@@ -11,10 +11,9 @@
 
 \subsection{Evidence-Based Software Design}
 At its core, Evidence-Based Design (EBD) \cite{kembel2012architectural,joeglekar2018evidence} embodies the 
-scientific method: it empowers one to ask the right questions and develop hypotheses, 
-gather quantitative and qualitative data that support or disprove these hypotheses, 
-and measure, share, and learn from the outcomes.
-
+scientific method: it empowers one to ask the right questions and develop hypotheses 
+and gather quantitative and qualitative evidence that support or disprove these hypotheses. 
+%and measure, share, and learn from the outcomes.
 In the case of Recommenders, the evidence is gathered from extensive experience working 
 with customers in real life recommendation scenarios. When there is no input from a 
 customer, the second source of evidence that is used is popular machine learning
@@ -56,33 +55,39 @@ notebooks run without error.
 We have also included nightly tests consisting of {\em smoke} and {\em integration tests}
 \cite{gonzalez-fierro2018beginners}. In the smoke tests, we run the notebooks with a 
 small dataset or a small number of epochs to ensure that they execute without failure and that they 
-output reasonable metrics. In the following example we show how 
-the precision at k of SAR algorithm with Movielens 100k dataset is tested.
-
+output reasonable metrics. 
+For example, the test for precision at k includes a line like
 \begin{minted}{python}
-    TOL = 0.05
-    @pytest.mark.smoke
-    def test_sar_single_node_smoke(notebooks):
-        notebook_path = notebooks["sar_single_node"]
-        pm.execute_notebook(
-            notebook_path,
-            OUTPUT_NOTEBOOK,
-            parameters=dict(TOP_K=10, MOVIELENS_DATA_SIZE="100k"),
-        )
-        results = pm.read_notebook(OUTPUT_NOTEBOOK).dataframe.set_index("name")["value"]
         assert results["precision"] == pytest.approx(0.326617179, TOL)
 \end{minted}
+where \verb!TOL! denotes the desired tolerance.
+%In the following example we show how 
+%the precision at k of SAR algorithm with Movielens 100k dataset is tested.
+%
+%\begin{minted}{python}
+%    TOL = 0.05
+%    @pytest.mark.smoke
+%    def test_sar_single_node_smoke(notebooks):
+%        notebook_path = notebooks["sar_single_node"]
+%        pm.execute_notebook(
+%            notebook_path,
+%            OUTPUT_NOTEBOOK,
+%            parameters=dict(TOP_K=10, MOVIELENS_DATA_SIZE="100k"),
+%        )
+%        results = pm.read_notebook(OUTPUT_NOTEBOOK).dataframe.set_index("name")["value"]
+%        assert results["precision"] == pytest.approx(0.326617179, TOL)
+%\end{minted}
 
 The smoke tests are a small version of the integration tests. While the integration tests
 use bigger datasets with more epochs and can take from 30 minutes to several hours, the smoke tests are quicker and
-will check for correctness of all the notebooks before executing the integration tests.
+check for correctness of all the notebooks before executing the integration tests.
 At the time of writing there are over 400 tests, between Windows and Linux. There are two groups of tests,
 one for the {\em master branch} and one for the {\em staging branch}, which is our development branch.
 
 The existence of a development branch, staging, is tightly related to the test pipeline. This paradigm is similar to
 production and pre-production environments (master and staging, respectively).
-The objective is to ensure that the code in master always works. When making a pull request, we 
-do it against staging, instead of master. The nightly tests execute in staging and make sure that the new code 
+The objective is to ensure that the code in master always works. Pull requests are created 
+against staging, instead of master. The nightly tests execute in staging and make sure that the new code 
 works as expected and does not fail. When staging is stable, we merge it to master with a pull request.  
 
 
@@ -92,22 +97,22 @@ We have introduced a number of design patterns which are standard in industry an
 in the open source community. For instance, \textit{don't repeat yourself}, \textit{single
 responsibility} or the Zen of Python\footnote{\url{https://www.python.org/dev/peps/pep-0020/}}. 
 
-The following example illustrates the pattern \textit{explicit is better than implicit}.
-An implicit read function would be: 
-\begin{minted}{python}
-    def read(filename):
-        # code for reading a csv or json
-        # depending on the file extension
-\end{minted}
-
-whereas the explicit example would be:
-\begin{minted}{python}
-    def read_csv(filename):
-        # code for reading a csv
-
-    def read_json(filename):
-        # code for reading a json
-\end{minted}
-
+An example is the pattern \textit{explicit is better than implicit}.
+An implicit \verb!read()! function handles all types of extensions like csv or json,  
+%\begin{minted}{python}
+%    def read(filename):
+%        # code for reading a csv or json
+%        # depending on the file extension
+%\end{minted}
+%
+%whereas the explicit example would be:
+%\begin{minted}{python}
+%    def read_csv(filename):
+%        # code for reading a csv
+%
+%    def read_json(filename):
+%        # code for reading a json
+%\end{minted}
+whereas the explicit approach is to write separate functions, \verb!read_csv()! and \verb!read_json()!, for each file format. 
 
 
