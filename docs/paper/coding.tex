@@ -1,14 +1,13 @@
 \subsection{Code Design}
 \label{code-style}
 
-We strive to maintain high quality code to make the utilities in the repository easy to 
-understand, use, and extend. We also work hard to maintain a friendly and constructive 
-environment. We've found that having clear expectations on the development process 
+We strive to maintain high quality code so as to make the utilities in the repository easy to 
+understand, use, and extend. We also strive to maintain a friendly and constructive 
+environment. We have found that having clear expectations on the development process 
 and consistent style helps to ensure everyone can contribute and collaborate effectively.
-
-We have published in the repository wiki the coding 
+We have published the coding 
 guidelines\footnote{\url{https://github.com/Microsoft/Recommenders/wiki/Coding-Guidelines}\label{foot_code_guidelines}} 
-for the project. Next, we describe the most important parts.
+in the wiki for the repository. Next, we describe the most important parts.
 
 \subsubsection{Evidence-Based Software Design}
 At its core, Evidence-Based Design (EBD) \cite{kembel2012architectural,joeglekar2018evidence} embodies the 
@@ -20,17 +19,17 @@ In the case of Recommenders, the evidence is gathered from extensive experience 
 with customers in real life recommendation scenarios. When there is no input from a 
 customer, the second source of evidence that is used is popular machine learning
 libraries like Tensorflow \cite{abadi2016tensorflow}, PyTorch \cite{paszke2017automatic},
-Scikit-learn \cite{pedregosa2011scikit} or LigthGBM \cite{ke2017lightgbm}.
+Scikit-learn \cite{pedregosa2011scikit} or LightGBM \cite{ke2017lightgbm}.
 
-One example to illustrate EBD is the definition of the metrics interface in Python and 
-PySpark. The definition in Python as based of functions:
+One example illustrating EBD is the definition of the metrics interfaces in Python (not in a Spark context) and 
+PySpark \cite{meng2016mllib}. The definition in Python is based on functions:
 
 \begin{minted}{python}
     from reco_utils.evaluation.python_evaluation import rmse
     result = rmse(df_test, df_predictions)
 \end{minted}
 
-whereas the definition in PySpark is based of classes:
+whereas the definition in PySpark is based on classes:
 \begin{minted}{python}
     from reco_utils.evaluation.spark_evaluation import SparkRatingEvaluation
     rating_eval = SparkRatingEvaluation(df_test, df_prediction)
@@ -38,25 +37,25 @@ whereas the definition in PySpark is based of classes:
 \end{minted}
 
 The selection of classes in PySpark and functions in Python, instead of having a unified
-interface, is derived from the EDB principle. Our customers and machine learning users
-that code in Python will naturally choose a function when creating metrics, as it is
-defined in Scikit-learn \cite{pedregosa2011scikit}. On the contrary, PySpark users 
+interface, is derived from the EDB principle. Any machine learning practitioners
+who code in Python will naturally choose a function when computing metrics, 
+in a way similar to Scikit-learn \cite{pedregosa2011scikit}. By contrast, PySpark users 
 will tend to code based on classes as defined in \cite{meng2016mllib}. 
 
 \subsubsection{Test Pipeline}
 
-The test pipeline in Recommenders is slightly more complicated than in most machine learning
+The test pipeline in Recommenders is more complicated than in most machine learning
 libraries \cite{abadi2016tensorflow,paszke2017automatic,pedregosa2011scikit,ke2017lightgbm}.
-Apart from standard {\em unit tests} with PyTest \cite{krekel2004pytest} of the utilities, 
-the Jupyter notebooks are also tested. To perform these tests we use Papermill 
-\cite{nteract2017papermill}, which allows for programmatic execution of a notebook. The
-unit tests are executed in every pull request and ensure that the utilities and 
-notebooks run without an error.
+Apart from standard {\em unit tests} of the utilities with PyTest \cite{krekel2004pytest}, 
+the Jupyter notebooks are also tested. To perform the latter tests we use Papermill 
+\cite{nteract2017papermill}, which allows for programmatic execution of notebooks. The
+unit tests are executed with every pull request and ensure that the utilities and 
+notebooks run without error.
 
-We have also included nightly tests composed by {\em smoke} and {\em integration tests}
+We have also included nightly tests consisting of {\em smoke} and {\em integration tests}
 \cite{gonzalez-fierro2018beginners}. In the smoke tests, we run the notebooks with a 
-small dataset or a small number of epochs to make sure that, apart from running, they 
-provide reasonable metrics. In the following example we show how to make sure that
+small dataset or a small number of epochs to ensure that they execute without failure and that they 
+output reasonable metrics. In the following example we show how 
 the precision at k of SAR algorithm with Movielens 100k dataset is tested.
 
 \begin{minted}{python}
