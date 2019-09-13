@@ -51,7 +51,7 @@ Another modular part of the recommendation process is the evaluation of metrics 
 (predicted vs. ground truth). There is a distinction between rating metrics (such as mean squared error and accuracy) and ranking metrics 
 (such as top-k precision and recall). For example, computing root mean squared error is done using 
 the \verb!rmse()! function from the \verb!reco_utils.evaluation.python_evaluation! module, 
-or the \verb!rmse()! function in the \verb!SparkRatingEvaluation! class from the \verb!reco_utils.evaluation.spark_evaluation! module.
+or the \verb!rmse()! function in the \verb!SparkRatingEvaluation! class from \verb!reco_utils.evaluation.spark_evaluation!.
 %\begin{minted}{python}
 %from reco_utils.evaluation.python_evaluation import rmse
 %eval_rmse = rmse(data_test, predictions, col_user="UserId", 
