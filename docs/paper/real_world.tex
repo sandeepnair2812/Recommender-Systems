@@ -1,26 +1,32 @@
 \section{Lessons Learned from Building Real-World Systems} 
 
-The core development team of Microsoft Recommenders have worked with data scientists and machine learning engineers at client side in various industrial verticals, helping them develop the production-ready recommender system used for different scenarios. 
+The core development team of Microsoft Recommenders have collaborated with data scientists and engineers 
+in various industrial verticals, on production-ready recommendation systems used for different scenarios. 
 
-\subsection{Challenges in Bringing Recommendation Systems to Production}
-In general, challenges in building a real-world system lie in the following aspects that include but are not limited to algorithm development. The following summarises the common challenges faced by recommender system developers in practical design and implementation.
+%\subsection{Challenges in Bringing Recommendation Systems to Production}
+%In general, challenges in building a real-world system lie in the following aspects that include but are not limited to algorithm development. 
+Some of the common challenges %faced by developers of recommendation systems in practical design and implementation 
+are the following. Model training and retraining in time is usually crucial to real-world applications like e-commerce where the volume and dynamics of training data change dramatically. Hyperparameters of a recommender model, especially that used for content-based recommendation scenarios, needs to be fine tuned properly in order to make sure the model delivers good performance.
+Real-time model or recommendation results serving should meet the engineering specifications determined from business requirements. An end-to-end recommendation pipeline may consist of various computing framework (e.g., distributed computing cluster, GPU, etc.) where computing resources should be used effectively and economically. The health status of a recommender system should be well managed, and online monitoring mechanism is therefore needed such that break points of the entire pipeline is observable. Offline evaluation is often used for selection of algorithm, in comparison to baseline models, while it is always recommended to perform online evaluation by using A/B testing and/or multi-armed bandit for fairly evaluating a recommender system. A recommender system is restricted by business rules like country-specific legislation (e.g., seen items are allowed to be recommended by only a certain amount of times, if it is in summer a jumper should not be recommended, etc) to make the recommendation results comply.
 
-\begin{itemize}
-    \item Model training and retraining on time is usually pivotal to real-world applications like e-commerce where the volume and dynamics of training data change dramatically. This requires iterative optimization for model implementation as well as architecture construction.
-    \item Hyperparameters of a recommender model, especially that used for content-based recommendation scenarios, needs to be fine tuned properly in order to make sure the model delivers good performance. 
-    \item Real-time model or recommendation results serving should meet the engineering specifications determined from business requirements. 
-    \item An end-to-end recommendation pipeline may consist of various computing framework (e.g., distributed computing cluster, GPU, etc.) where computing resources should be used effectively and economically. 
-    \item Health status of a recommender system should be well managed, and online monitoring mechanism is therefore needed such that break points of the entire pipeline is observable.
-    \item Offline evaluation is often used for selection of algorithm, in comparison to baseline models, while it is always recommended to perform online evaluation by using A/B testing and/or multi-armed bandit for fairly evaluating a recommender system.
-    \item A recommender system is restricted by business rules like country-specific legislation (e.g., seen items are allowed to be recommended by only a certain amount of times, if it is in summer a jumper should not be recommended, etc) to make the recommendation results comply.
-\end{itemize}
+%\begin{itemize}
+%    \item Model training and retraining in time is usually crucial to real-world applications like e-commerce where the volume and dynamics of training data change dramatically. This requires iterative optimization for model implementation as well as architecture construction.
+%    \item Hyperparameters of a recommender model, especially that used for content-based recommendation scenarios, needs to be fine tuned properly in order to make sure the model delivers good performance. 
+%    \item Real-time model or recommendation results serving should meet the engineering specifications determined from business requirements. 
+%    \item An end-to-end recommendation pipeline may consist of various computing framework (e.g., distributed computing cluster, GPU, etc.) where computing resources should be used effectively and economically. 
+%    \item Health status of a recommender system should be well managed, and online monitoring mechanism is therefore needed such that break points of the entire pipeline is observable.
+%    \item Offline evaluation is often used for selection of algorithm, in comparison to baseline models, while it is always recommended to perform online evaluation by using A/B testing and/or multi-armed bandit for fairly evaluating a recommender system.
+%    \item A recommender system is restricted by business rules like country-specific legislation (e.g., seen items are allowed to be recommended by only a certain amount of times, if it is in summer a jumper should not be recommended, etc) to make the recommendation results comply.
+%\end{itemize}
 
-\subsection{Reference Architectures}
+%\subsection{Reference Architectures}
+%
+%To effectively mitigate most (if not all) of the aforementioned challenges, 
+In response to some of these issues, 
+Microsoft Recommenders provides two reference architecture designs for building production-grade system. 
 
-To effectively mitigate most (if not all) of the aforementioned challenges, Microsoft Recommenders provides two reference architecture designs for building production-grade system. 
-
-\subsubsection{Batch-Mode Recommendations}
+%\subsubsection{Batch-Mode Recommendations}
 A \textit{batch-mode recommendation architecture} refers to a pipeline where a recommender model is built with the input data flow, and the recommendation results from that model are generated successively. In industrial recommender system where a collaborative filtering typed algorithm is used, this kind of architecture is highly effective. This is because the batch-mode pipeline hides the latency in using a model to score items and produce the top-k recommendations, by pre-caching the recommendation results into a database (usually this database is globally distributed for querying efficiency in different regions). In the operationalization example available in the Recommenders repository, 11,000 request units per second is achieved in a recommender system with minimal sized machines on cloud service \footnote{\url{https://github.com/microsoft/recommenders/tree/master/notebooks/04_model_select_and_optimize}}. To build a model with desirable performance by using an optimal budget, hyper parameter tuning techniques like Bayesian Optimization \cite{snoek2012practical} and Neural Architecture Search \cite{zoph2016neural} are often used. In the example notebooks shown in the Recommenders repository, applying an intelligent hyper parameter tuning technique can reduce time spent on parameter searching dramatically \footnote{\url{https://github.com/microsoft/recommenders/tree/master/notebooks/04_model_select_and_optimize}}. For meeting the compliance requirement, usually post-filtering logics are incorporated in the pipeline to refine the recommendations.
 
-\subsubsection{Real-Time Model Serving}
+%\subsubsection{Real-Time Model Serving}
 \textit{Real-time model serving} refers to an architecture where attributes of users and items, contextual information, etc., are used in model building. In this scenario, a real-time model serving scheme is usually considered given the difficulty of pre-computing all possible recommendations for different feature and context combinations. Compared to the batch-mode recommendation, model management in this scenario is specially importance because a pre-trained model is re-used for scoring and item ranking. Depending on business requirements, engineering specifications, and model complexity, computing resources for model serving should be scalable and configurable for both computational efficiency and cost saving purpose. Nowadays, Kubernetes cluster is used as the industrial main stream for model serving \cite{bernstein2014containers}. Another reference architecture that illustrates the use of LightGBM model \cite{ke2017lightgbm} for real-time model serving, built on top of the Spark framework, is demonstrated in the Azure documentation \footnote{\url{https://docs.microsoft.com/en-us/azure/architecture/example-scenario/ai/scalable-personalization}}.
