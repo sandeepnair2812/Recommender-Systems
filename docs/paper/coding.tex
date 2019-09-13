@@ -73,33 +73,26 @@ the precision at k of SAR algorithm with Movielens 100k dataset is tested.
 \end{minted}
 
 The smoke tests are a small version of the integration tests. While the integration tests
-use bigger datasets with more epochs and can take from 30min to several hours, the smoke tests are quicker and
-will check the correctness of all the notebooks before executing the integration tests.
+use bigger datasets with more epochs and can take from 30 minutes to several hours, the smoke tests are quicker and
+will check for correctness of all the notebooks before executing the integration tests.
+At the time of writing there are over 400 tests, between Windows and Linux. There are two groups of tests,
+one for the {\em master branch} and one for the {\em staging branch}, which is our development branch.
 
-At the time of writing we have over 400 tests, between Windows and Linux. Furthermore, we have two group of tests,
-one for master branch and one for staging branch, which is our development branch.
-
-The existence of a development branch, staging, is tightly related to the test pipeline. The paradigm is similar to
-production and pre-production environments. The production branch is master, while the pre-preproduction branch is staging.
-The objective is to make sure that the code in master always work. When making a pull request, we will
-do it against staging, instead of master. The nightly tests will execute in staging and make sure that the new code 
-works as expected, apart from not failing. When staging is stable, we will make a pull request to master.  
+The existence of a development branch, staging, is tightly related to the test pipeline. This paradigm is similar to
+production and pre-production environments (master and staging, respectively).
+The objective is to ensure that the code in master always works. When making a pull request, we 
+do it against staging, instead of master. The nightly tests execute in staging and make sure that the new code 
+works as expected and does not fail. When staging is stable, we merge it to master with a pull request.  
 
 
 \subsubsection{Other Design Patterns}
 
-We introduced a number of design patters that are standard in the industry and well-known
+We have introduced a number of design patterns which are standard in industry and well-known
 in the open source community. For instance, \textit{don't repeat yourself}, \textit{single
 responsibility} or the Zen of Python\footnote{\url{https://www.python.org/dev/peps/pep-0020/}}. 
 
 The following example illustrates the pattern \textit{explicit is better than implicit}.
 An implicit read function would be: 
-\begin{minted}{python}
-    def read(filename):
-        # code for reading a csv or json
-        # depending on the file extension
-\end{minted}
-
 \begin{minted}{python}
     def read(filename):
         # code for reading a csv or json
