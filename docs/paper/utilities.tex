@@ -11,23 +11,23 @@ some algorithms developed by Microsoft like SAR, RLRMC or the DeepRec package.
 The components included in the utilities are in general terms the following: 
 %NOTE: instead of citing the exact names of the folders that can change in the future, I list the high level concepts
 \begin{itemize}
-    \item \textbf{Common utils:} We provide supporting utilities like timers, loggers, gpu functions, 
+    \item \textbf{Common utils:} supporting utilities like timers, loggers, gpu functions, 
     spark helpers or constants.
-    \item \textbf{Data preparation:} We coded utility functions for data operations 
+    \item \textbf{Data preparation:} utility functions for data operations 
     such as data download, data loading, data transformation, data split, etc., which are frequent data preparation 
     tasks witnessed in recommendation system development. They include custom downloaders for some
     popular datasets like Movielens and Criteo and different types of data splitters like random, chronological or
     stratified.     
-    \item \textbf{Algorithms:} We work in close collaboration with Microsoft Research for providing the latest state of
+    \item \textbf{Algorithms:} the latest state of
     the art algorithms like xDeepFM \cite{lian2018xdeepfm} or DKN \cite{wang2018dkn}, and some algorithms developed by other
     teams at Microsoft like SAR \cite{diev2015sar} or RLRMC \cite{rlrmc}. There are contributions from the research community, a good case is NCF 
     \cite{he2017neural}, added by the authors of the algorithm. We provide some light wrappers of well-known Microsoft
     libraries like LightGBM \cite{ke2017lightgbm} or Vowpal Wabbit \cite{agarwal2014reliable}, or implementations
     of some algorithms like Wide and Deep \cite{cheng2016wide} or RBM \cite{salakhutdinov2007restricted}. 
-    \item \textbf{Evaluation:} We implemented different rating and ranking metrics in Python+CPU and PySpark environments.
-    \item \textbf{Model Selection and Optimization:} We added utility functions for a number of hyperparameter 
-    tuning methods like NNI \cite{nni}. 
-    \item \textbf{Operationalization:} We have operationalization functions on Kubernetes.
+    \item \textbf{Evaluation:} rating and ranking metrics implemented in Python+CPU and PySpark environments.
+    \item \textbf{Model Selection and Optimization:} utility functions developed on top of popular hyperparameter 
+    tuning framework like NNI \cite{nni}. 
+    \item \textbf{Operationalization:} model operationalization functions on platform like Kubernetes.
 \end{itemize}
     
 
