@@ -1,15 +1,15 @@
-\subsection{Code Design}
-\label{code-style}
+%\subsection{Code Design}
+%\label{code-style}
+%
+%We strive to maintain high quality code so as to make the utilities in the repository easy to 
+%understand, use, and extend. We also strive to maintain a friendly and constructive 
+%environment. We have found that having clear expectations on the development process 
+%and consistent style helps to ensure everyone can contribute and collaborate effectively.
+%We have published the coding 
+%guidelines\footnote{\url{https://github.com/Microsoft/Recommenders/wiki/Coding-Guidelines}\label{foot_code_guidelines}} 
+%in the wiki for the repository. Next, we describe the most important parts.
 
-We strive to maintain high quality code so as to make the utilities in the repository easy to 
-understand, use, and extend. We also strive to maintain a friendly and constructive 
-environment. We have found that having clear expectations on the development process 
-and consistent style helps to ensure everyone can contribute and collaborate effectively.
-We have published the coding 
-guidelines\footnote{\url{https://github.com/Microsoft/Recommenders/wiki/Coding-Guidelines}\label{foot_code_guidelines}} 
-in the wiki for the repository. Next, we describe the most important parts.
-
-\subsubsection{Evidence-Based Software Design}
+\subsection{Evidence-Based Software Design}
 At its core, Evidence-Based Design (EBD) \cite{kembel2012architectural,joeglekar2018evidence} embodies the 
 scientific method: it empowers one to ask the right questions and develop hypotheses, 
 gather quantitative and qualitative data that support or disprove these hypotheses, 
@@ -18,8 +18,9 @@ and measure, share, and learn from the outcomes.
 In the case of Recommenders, the evidence is gathered from extensive experience working 
 with customers in real life recommendation scenarios. When there is no input from a 
 customer, the second source of evidence that is used is popular machine learning
-libraries like Tensorflow \cite{abadi2016tensorflow}, PyTorch \cite{paszke2017automatic},
-Scikit-learn \cite{pedregosa2011scikit} or LightGBM \cite{ke2017lightgbm}.
+libraries.
+%like Tensorflow \cite{abadi2016tensorflow}, PyTorch \cite{paszke2017automatic},
+%Scikit-learn \cite{pedregosa2011scikit} or LightGBM \cite{ke2017lightgbm}.
 
 One example illustrating EBD is the definition of the metrics interfaces in Python (not in a Spark context) and 
 PySpark \cite{meng2016mllib}. The definition in Python is based on functions:
@@ -42,7 +43,7 @@ who code in Python will naturally choose a function when computing metrics,
 in a way similar to Scikit-learn \cite{pedregosa2011scikit}. By contrast, PySpark users 
 will tend to code based on classes as defined in \cite{meng2016mllib}. 
 
-\subsubsection{Test Pipeline}
+\subsection{Test Pipeline}
 
 The test pipeline in Recommenders is more complicated than in most machine learning
 libraries \cite{abadi2016tensorflow,paszke2017automatic,pedregosa2011scikit,ke2017lightgbm}.
@@ -85,7 +86,7 @@ do it against staging, instead of master. The nightly tests execute in staging a
 works as expected and does not fail. When staging is stable, we merge it to master with a pull request.  
 
 
-\subsubsection{Other Design Patterns}
+\subsection{Other Design Patterns}
 
 We have introduced a number of design patterns which are standard in industry and well-known
 in the open source community. For instance, \textit{don't repeat yourself}, \textit{single
