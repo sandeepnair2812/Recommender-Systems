@@ -21,7 +21,7 @@ with the \verb!reco_utils.dataset.python_splitters! module.
 %For example, the following code performs two types of 
 For example, the function 
 \verb!python_random_split()! splits by random sampling 
-and the function \verb!python_chrono_split()! by splitting each user"s data according to the timestamp: 
+and the function \verb!python_chrono_split()! by splitting each user"s data according to the timestamp. 
 %\begin{minted}{python}
 %from reco_utils.dataset.python_splitters import python_chrono_split, 
 %    python_random_split
@@ -34,9 +34,9 @@ and the function \verb!python_chrono_split()! by splitting each user"s data acco
 There are also methods for stratified splitting (by user or item) and chronological splitting without stratification. 
 There are versions of the splitter methods for both Pandas and PySpark.
 
-Training any of the algorithms included in the repository is also straightforward. To this end, we use an interface similar to Scikit-Learn \cite{pedregosa2011scikit} 
+Training any of the algorithms included in the repository is also straightforward. To this end, we use an interface similar to Scikit-Learn \cite{pedregosa2011scikit}, 
 with algorithms defined as classes implementing \verb fit() and \verb predict() methods. For example, training a Neural Collaborative Filtering \cite{he2017neural} model
-can be done as follows
+can be done as follows:
 \begin{minted}{python}
     model = NCF(n_users=n_users, n_items=n_items, n_factors=4, n_epochs=100,
         layer_sizes=[16,8,4], batch_size=256, learning_rate=1e-3)
