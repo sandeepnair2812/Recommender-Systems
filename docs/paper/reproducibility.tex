@@ -38,13 +38,11 @@ Training any of the algorithms included in the repository is also straightforwar
 with algorithms defined as classes implementing \verb fit() and \verb predict() methods. For example, training a Neural Collaborative Filtering \cite{he2017neural} model
 can be done as follows
 \begin{minted}{python}
-from reco_utils.recommender.ncf.ncf_singlenode import NCF
-model = NCF(n_users=data.n_users, n_items=data.n_items, model_type="NeuMF",
-    n_factors=4, layer_sizes=[16,8,4], n_epochs=100, batch_size=256, 
-    learning_rate=1e-3, verbose=10)
-model.fit(data_train)
-predictions = [[row.userID, row.itemID, model.predict(row.userID, row.itemID)]
-               for (_, row) in data_test.iterrows()]
+    model = NCF(n_users=n_users, n_items=n_items, n_factors=4, n_epochs=100,
+        layer_sizes=[16,8,4], batch_size=256, learning_rate=1e-3)
+    model.fit(data_train)
+    preds = [[row.userID, row.itemID, model.predict(row.userID, row.itemID)]
+        for (_, row) in data_test.iterrows()]
 \end{minted}
 
 Another modular part of the recommendation process is the evaluation of metrics between two data frames consisting of users, items and numerical values 

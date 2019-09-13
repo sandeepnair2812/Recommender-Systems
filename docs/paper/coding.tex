@@ -58,7 +58,7 @@ small dataset or a small number of epochs to ensure that they execute without fa
 output reasonable metrics. 
 For example, the test for precision at k includes a line like
 \begin{minted}{python}
-        assert results["precision"] == pytest.approx(0.326617179, TOL)
+    assert results["precision"] == pytest.approx(0.326617179, TOL)
 \end{minted}
 where \verb!TOL! denotes the desired tolerance.
 %In the following example we show how 
