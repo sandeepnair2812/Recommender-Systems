@@ -1,12 +1,6 @@
 \section{Lessons Learned from Building Real-World Systems} 
 
-The core development team of Microsoft Recommenders has collaborated with data scientists and engineers 
-in various industrial verticals, on production-ready recommendation systems used for different scenarios. 
-
-%\subsection{Challenges in Bringing Recommendation Systems to Production}
-%In general, challenges in building a real-world system lie in the following aspects that include but are not limited to algorithm development. 
-Many issues and challenges are faced by practitioners implementing recommendation systems. 
-{\em Model retraining} on a daily basis is often crucial in applications like e-commerce where the volume and dynamics of training data can change rapidly. 
+Productionizing a industry-grade recommender system for real-world problems is often challenging in a various aspects. For example, {\em model retraining} on a daily basis is often crucial in applications like e-commerce where the volume and dynamics of training data can change rapidly. 
 In some cases, due to the size of the data or effects like concept drift, {\em online training} may be the best option. 
 {\em Hyperparameters} of a recommender model, especially in content-based recommendation scenarios, need to be fine tuned properly in order to ensure that the model delivers good performance.
 {\em Real-time serving} of recommendations should meet engineering specifications determined from business requirements, 
@@ -33,10 +27,9 @@ to make the recommendation results comply.
 %\subsection{Reference Architectures}
 %
 %To effectively mitigate most (if not all) of the aforementioned challenges, 
-In response to some of these issues, 
-Microsoft Recommenders provides two reference architecture designs for building production-grade systems. 
+Microsoft Recommenders provides two end-to-end reference architecture designs for building production-grade systems. 
 %\subsubsection{Batch-Mode Recommendations}
-A \textit{batch-mode recommendation architecture} refers to a pipeline where a recommender model is trained with the input data flow, and the recommendation results from that model are generated subsequently. 
+1) A \textit{batch-mode recommendation architecture} refers to a pipeline where a recommender model is trained with the input data flow, and the recommendation results from that model are generated subsequently. 
 In industrial recommender systems where a collaborative filtering type algorithm is used, 
 this kind of architecture is highly effective. This is because the batch-mode pipeline 
 hides the latency of using a model to score items and produce the top-k recommendations, 
@@ -45,6 +38,4 @@ In the operationalization example available in the Recommenders repository,
 11,000 request units per second are achieved in a recommendation system with minimal sized machines on cloud service. 
 %To build a model with desirable performance by using an optimal budget, hyper parameter tuning techniques like Bayesian Optimization \cite{snoek2012practical} and Neural Architecture Search \cite{zoph2016neural} are often used. In the example notebooks shown in the Recommenders repository, applying an intelligent hyper parameter tuning technique can reduce time spent on parameter searching dramatically \footref{model_select}. 
 To meet the compliance requirements, usually post-filtering logic is incorporated in the pipeline to refine the recommendations.
-
-%\subsubsection{Real-Time Model Serving}
-\textit{Real-time model serving} refers to an architecture where attributes of users and items, contextual information etc. are used during model training. In this scenario, a real-time model serving scheme is usually considered given the difficulty of pre-computing all possible recommendations for different feature and context combinations. Compared to the batch-mode recommendation, model management in this scenario is especially important because a pre-trained model is re-used for scoring and item ranking. Depending on business requirements, engineering specifications, and model complexity, computing resources for model serving should be scalable and configurable for both computational efficiency and cost saving purposes. Nowadays, Kubernetes cluster is used as the industrial main standard for model serving \cite{bernstein2014containers}. Another reference architecture that illustrates the use of LightGBM model \cite{ke2017lightgbm} for real-time model serving, built on top of the Spark framework, is demonstrated in the Azure documentation\footnote{\url{https://docs.microsoft.com/en-us/azure/architecture/example-scenario/ai/scalable-personalization}}.
+2) \textit{Real-time model serving} refers to an architecture where attributes of users and items, contextual information etc. are used during model training. In this scenario, a real-time model serving scheme is usually considered given the difficulty of pre-computing all possible recommendations for different feature and context combinations. Compared to the batch-mode recommendation, model management in this scenario is especially important because a pre-trained model is re-used for scoring and item ranking. Depending on business requirements, engineering specifications, and model complexity, computing resources for model serving should be scalable and configurable for both computational efficiency and cost saving purposes. Nowadays, Kubernetes cluster is used as the industrial main standard for model serving \cite{bernstein2014containers}. Another reference architecture that illustrates the use of LightGBM model \cite{ke2017lightgbm} for real-time model serving, built on top of the Spark framework, is demonstrated in the Azure documentation\footnote{\url{https://docs.microsoft.com/en-us/azure/architecture/example-scenario/ai/scalable-personalization}}.
