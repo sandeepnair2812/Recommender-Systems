@@ -47,7 +47,8 @@ will tend to code based on classes as defined in \cite{meng2016mllib}.
 The test pipeline in Recommenders is more complicated than in most machine learning
 libraries \cite{abadi2016tensorflow,paszke2017automatic,pedregosa2011scikit,ke2017lightgbm}.
 Apart from standard {\em unit tests} of the utilities with PyTest \cite{krekel2004pytest}, 
-the Jupyter notebooks are also tested. To perform the latter tests we use Papermill\footnote{https://github.com/nteract/papermill}, 
+the Jupyter notebooks are also tested. To perform the latter tests we use 
+Papermill\footnote{\url{https://github.com/nteract/papermill}}, 
 which allows for programmatic execution of notebooks. The
 unit tests are executed with every pull request and ensure that the utilities and 
 notebooks run without error.
@@ -96,7 +97,6 @@ works as expected and does not fail. When staging is stable, we merge it to mast
 We have introduced a number of design patterns which are standard in industry and well-known
 in the open source community. For instance, \textit{don't repeat yourself}, \textit{single
 responsibility} or the Zen of Python\footnote{\url{https://www.python.org/dev/peps/pep-0020/}}. 
-
 An example is the pattern \textit{explicit is better than implicit}.
 An implicit \verb!read()! function handles all types of extensions like csv or json,  
 %\begin{minted}{python}
