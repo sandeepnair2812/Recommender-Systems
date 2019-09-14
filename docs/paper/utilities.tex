@@ -2,7 +2,7 @@
 
 The objective of the utilities is to facilitate and speed up the development and evaluation of recommendation systems.
 These functions are designed as the minimum layer needed for supporting common recommendation pipelines, some of 
-them depicted in the notebooks. 
+them described in the notebooks. 
 In some cases, the code addition is minimal, like the utilities invoking the Surprise \cite{Surprise} or 
 FastAI \cite{howard2018fastai} libraries. In other cases, full implementations are provided.
 
@@ -10,9 +10,11 @@ The components included in the utilities are in general terms the following:
 %NOTE: instead of citing the exact names of the folders that can change in the future, I list the high level concepts
 \begin{itemize}
     \item \textbf{Common utilities:} supporting utilities like timers, loggers, GPU functions, 
-    Spark helpers or constants.
-    \item \textbf{Data preparation:} Utility functions for data download, data loading, data transformation, data split etc., which are frequent tasks in recommendation systems development. They include custom downloaders for some
-    popular datasets like Movielens and Criteo and different types of data splitters like random, chronological or
+    Spark helpers, memory management etc.
+    \item \textbf{Data preparation:} Utility functions for data download, loading, 
+    transformation, splitting etc., which are frequent tasks in recommendation systems development. They include custom downloaders for some
+    popular datasets like Movielens \cite{movielens} and Criteo \footnote{\url{https://labs.criteo.com/2013/12/download-terabyte-click-logs/
+    }}\label{criteo} and different types of data splitters like random, chronological or
     stratified.     
     \item \textbf{Algorithms:} These include algorithms developed 
     in Microsoft like xDeepFM \cite{lian2018xdeepfm}, DKN \cite{wang2018dkn}, SAR \cite{diev2015sar} and RLRMC \cite{rlrmc}. There are contributions from the research community such as NCF 
