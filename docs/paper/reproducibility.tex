@@ -2,7 +2,7 @@
 
 One of our main goals in building Microsoft Recommenders has been to enhance several aspects of research and data science processes.
 In particular, we provide utilities for tasks which are common and repetitive when building recommendations pipelines.  
-{\em Data preparation} is the first stage of such a pipeline and involves loading data sets in the right format and generating training, validation and test sets from it.
+{\em Data preparation} is the first stage of such a pipeline and involves loading data sets in the right format and generating training, validation and test sets from them.
 We provide utilities which make it simple to download the Movielens \cite{movielens}, Criteo \footref{criteo} and Wikidata \cite{wikidata} data sets. 
 For example, to load 
 %For example, the following code loads 
@@ -12,8 +12,8 @@ the Movielens 100K data set to a Pandas data frame
 %data = movielens.load_pandas_df(size="100k", 
 %    header=["UserId", "MovieId", "Rating", "Timestamp"], title_col="Title")
 %\end{minted}
-one uses the function \verb!movielens.load_pandas_df()! from the \verb!reco_utils.dataset.movielens! module.
-To load the data to a PySpark data frame the syntax is similar and uses the function \verb!movielens.load_spark_df()!.
+one uses the function \verb!load_pandas_df()! from the \verb!reco_utils.dataset.movielens! module.
+To load the data to a PySpark data frame the syntax is similar and uses the function \verb!load_spark_df()!.
 
 Splitting a data set can also be done in one line 
 with the \verb!reco_utils.dataset.python_splitters! module.
@@ -33,9 +33,10 @@ and the function \verb!python_chrono_split()! by splitting each user"s data acco
 There are also methods for stratified splitting (by user or item) and chronological splitting without stratification. 
 There are versions of the splitter methods for both Pandas and PySpark.
 
-Training any of the algorithms included in the repository is also straightforward. To this end, we use an interface similar to Scikit-Learn \cite{pedregosa2011scikit}, 
-with algorithms defined as classes implementing \verb fit() and \verb predict() methods. For example, training a Neural Collaborative Filtering \cite{he2017neural} model
-can be done as follows:
+{\em Training} any of the algorithms included in the repository is also straightforward. To this end, we use an interface similar to Scikit-Learn \cite{pedregosa2011scikit}, 
+with algorithms defined as classes implementing \verb fit() and \verb predict() methods. 
+For example, training a Neural Collaborative Filtering \cite{he2017neural} model
+and predicting on test data can be done as follows:
 \begin{minted}{python}
     model = NCF(n_users=n_users, n_items=n_items, n_factors=4, n_epochs=100,
         layer_sizes=[16,8,4], batch_size=256, learning_rate=1e-3)
@@ -44,7 +45,7 @@ can be done as follows:
         for (_, row) in data_test.iterrows()]
 \end{minted}
 
-Another modular part of the recommendation process is the evaluation of metrics between two data frames consisting of users, items and numerical values 
+Another modular part of the recommendation process is the {\em evaluation} of metrics between two data frames consisting of users, items and numerical values 
 (predicted vs. ground truth). There is a distinction between rating metrics (such as mean squared error and accuracy) and ranking metrics 
 (such as top-k precision and recall). For example, computing root mean squared error is done 
 as in the code example of Section 3.1.   
@@ -57,7 +58,7 @@ as in the code example of Section 3.1.
 %\end{minted}
  
 These interfaces hide all the implementation details of the algorithms involved, while providing access to the necessary parameterization.
-In this way, a recommendation process can be completely replicable and reproducible from beginning to end. Furthermore, any randomization 
-which is part of data processing and evaluation is exposed to the user with seed parameters, thus enabling fair comparisons between the results of different algorithms
+In this way, a recommendation process can be completely {\em replicable and reproducible} from beginning to end. Furthermore, any randomization 
+which is part of data processing and evaluation is exposed to the user with seed parameters, thus enabling {\em fair comparisons} between the results of different algorithms
 on the same data. 
 
