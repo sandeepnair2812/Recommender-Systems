@@ -8,7 +8,7 @@ Recommendation systems have become ubiquitous in modern business,
 %Recommendations appear almost everywhere in today's e-commerce, in which consumers typically have a large variety of products or other
 %options to choose from. 
 examples of which include recommendation of brands, news, consumer products, media content, 
-travel packages and many others. In such scenarios, the goals of business usually are to increase {\em revenue},
+travel packages and many others. Goals of such scenarios are usually to increase {\em revenue},
 {\em customer engagement and satisfaction}, make better {\em predictions}, 
 %so that better business decisions about advertising spend and internet traffic can be made. In addition, vendors want to 
 gain {\em understanding about customers} etc.
@@ -40,26 +40,16 @@ and may {\em not be compatible} with each other. Whereas new algorithms are bein
 expertise or time to implement and deploy these algorithms in production. 
 On the other side, researchers, when applying their methods to real world scenarios, may lack experience of the domain of interest
 or awareness of the best practices with respect to data science and software engineering. Thus, it can be {\em time-consuming} to build a new recommendation system from an
-algorithm, even when available as software, or to incorporate it into an existing recommendations pipeline. It can also be time-consuming to build a prototype of a new or existing algorithm and to 
-{\em compare the performance} of different algorithms on the same recommendations task. 
+algorithm even when it is available as software, or to incorporate the algorithm into an end-to-end pipeline. In addition, it is often laborious to prototype new or existing algorithm and fairly compare it against others under the same evaluation protocol. 
 
-In response to these challenges, our team has developed {\em Microsoft Recommenders}, an open-source 
-Github repository available at \url{https://github.com/Microsoft/Recommenders}.
-The development of this repository is an ongoing {\em collaborative effort} of machine learning researchers and data scientists from 
-various groups in Microsoft, as well as contributors from the broader community.
-This is also demonstrated by the usage of the repository, which has been growing fast 
-with more than 4000 stars, making it, 
-at the time of writing, the most popular repository for recommendation systems on Github.%and 600 forks from different organizations all over the world. 
-
-Broadly speaking, the repository mainly consists of {\em utilities} for data manipulation, evaluation, 
+In response to these challenges, we developed the recommendation best-practice hub, \verb|Microsoft Recommenders|, which is open sourced on Github as a repository
+\footnote{\url{https://github.com/Microsoft/Recommenders}}.
+The development of this repository is a {\em collaborative effort} of machine learning researchers and data scientists from 
+various groups in Microsoft, as well as contributors from the community.
+At the time of writing, the repository is the most popular one for recommendation systems on Github, with $\sim4800$ stars. The repository mainly consists of {\em utilities} for data manipulation, evaluation, 
 model training and recommendation, as well as {\em Jupyter notebooks} containing how-to examples for building end-to-end recommenders, hands-on familiarization with the algorithms and quick prototyping. 
-The development approach we follow benefits from existing best practices and software libraries already avaliable in the recommendations community.
-In addition, we have striven to make the repository modular and easy to understand and use, so that researchers and practitioners can easily build
-new or customized algorithms, utilities and notebooks.
+The repository is developed based on both industrial experience from the core team as well as the well-known libraries avaliable in the market.
+The repository is designed with particular consideration on modularity and usability, so that custom utility functions and notebooks can be added with minimal ramp-up efforts.
 
-In the following sections, we summarize the content of {\em Microsoft Recommenders} and present the approach and the principles we have followed
-for its development. In Section 2, we provide an overview of the structure and content of the repository. In Section 3, we explain our development approach, some of
-the design decisions and show how practitioners are enabled to use and contribute to the repository productively. In Section 4, we discuss how recommendations
-algorithms can be brought to operation and how they can be incorporated within end-to-end pipelines, based on our experience with real-life production systems. 
-Finally, in Section 5, we conclude with some insights and learnings we have gained from the practical application of the recommendations repository.
+The rest of the paper is organized as follows. Section 2 gives an overview of the structure and content of the repository. Section 3 explains design philosophy and how it benefits productive development for practitioners. Section 4 presents deployment and operationalization of recommender models with real-world industrial practice discussed. The paper is concluded in Section 5 with insights and learnings gained from the practical application of the recommendations repository.
 
