@@ -16,7 +16,7 @@ gain {\em understanding about customers} etc.
 In machine learning research, the literature on recommendations goes back to the 1990s \cite{Tapestry, grouplens}
 and includes a wide variety of approaches, such as {\em collaborative filtering} \cite{bell_lessons,koren2009matrix,SVD++,PMF}, 
 {\em content-based} and {\em hybrid} methods \cite{rendle,ffm,bpr,pairwise,multiverse}, 
-{\em deep learning} methods \cite{PNN,cheng2016wide,lian2018xdeepfm,he2017neural,youtube,nvidia,survival},
+{\em deep learning} methods \cite{karatzoglou,PNN,cheng2016wide,lian2018xdeepfm,he2017neural,youtube,nvidia,survival},
  {\em explainable recommendation} \cite{explainable,rl_explainable}, {\em reinforcement learning} \cite{rl_explainable,rl,rl_negative} etc.
 
 %The history of recommendation algorithms goes back to the 1990s \cite{Tapestry, grouplens}
@@ -33,7 +33,9 @@ and includes a wide variety of approaches, such as {\em collaborative filtering}
 In practice, however, application of recommendation algorithms has encountered significant challenges. 
 First, there are {\em limited references and guidance} for building recommendation systems at scale to support
 enterprise grade scenarios. In addition, even though there exist several off-the-shelf packages, tools and 
-modules, they tend to focus on specific aspects of recommendations 
+modules \cite{mymedia,Surprise,spotlight,caserec,lenskit}, 
+they tend to focus on specific aspects of recommendations, 
+cover mostly factorization and neighbor-based methods 
 and may {\em not be compatible} with each other. Whereas new algorithms are being published continuously in research, in the field many practitioners may lack the 
 expertise or time to implement and deploy these algorithms in production. 
 On the other side, researchers, when applying their methods to real world scenarios, may lack experience of the domain of interest
@@ -45,13 +47,14 @@ In response to these challenges, our team has developed {\em Microsoft Recommend
 Github repository available at \url{https://github.com/Microsoft/Recommenders}.
 The development of this repository is an ongoing {\em collaborative effort} of machine learning researchers and data scientists from 
 various groups in Microsoft, as well as contributors from the broader community.
-This is also demonstrated by the usage of the repository, which has been growing fast with more than 4000 stars making it, 
+This is also demonstrated by the usage of the repository, which has been growing fast 
+with more than 4000 stars, making it, 
 at the time of writing, the most popular repository for recommendation systems on Github.%and 600 forks from different organizations all over the world. 
 
 Broadly speaking, the repository mainly consists of {\em utilities} for data manipulation, evaluation, 
-model training and recommendation; and {\em Jupyter notebooks}, that is, how-to examples for building end-to-end recommenders, hands-on familiarization with the algorithms and quick prototyping. 
+model training and recommendation, as well as {\em Jupyter notebooks} containing how-to examples for building end-to-end recommenders, hands-on familiarization with the algorithms and quick prototyping. 
 The development approach we follow benefits from existing best practices and software libraries already avaliable in the recommendations community.
-In addition, we have strived to make the repository modular and easy to understand and use, so that researchers and practitioners can easily build
+In addition, we have striven to make the repository modular and easy to understand and use, so that researchers and practitioners can easily build
 new or customized algorithms, utilities and notebooks.
 
 In the following sections, we summarize the content of {\em Microsoft Recommenders} and present the approach and the principles we have followed
