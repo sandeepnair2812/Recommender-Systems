@@ -4,6 +4,7 @@ On this section there is listed a number of business scenarios that are common i
 
 The list of scenarios are:
 
+* [Academic](academic)
 * [Ads](ads)
 * [Entertainment](entertainment)
 * [Food and restaurants](food_and_restaurants)
