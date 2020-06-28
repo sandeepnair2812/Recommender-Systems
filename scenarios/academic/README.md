@@ -6,9 +6,25 @@ Recommendation system has been widely applied in the commmericial fields like re
 
 ## Scenarios
 
-Next we will describe several most common scenarios and main considerations when applying recommendations in academic research.
+Academic recommendaiton may work for a variety of different problems, e.g., 
 
-### Scientific paper recommendation
+* searching the literature in any topic a researcher is interested in 
+* finding recent or traditional papers related to a research problem
+* improving the reference list of a manuscript being written
+* finding a set of researchers in a field of interest to follow their work
+* finding a list of potential reviwers
+
+### Literature recommendation
+
+This is usually seen in the academic recommendation problems. There are usually two types of recommendation techniques used for this problem, which are *citation-based recommendation* and *content-based recommendation*. 
+
+#### Citation-based recommendation
+
+Citation-based recommendation refers to the recommendation problem where the recommended literature generated for users is based on its citation network. 
+
+### Citation-based recommendation
+
+### Content-based recommendation
 
 ### Personalized recommendation
 
