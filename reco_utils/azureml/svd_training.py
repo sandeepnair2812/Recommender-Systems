@@ -29,9 +29,9 @@ def svd_training(args):
     Train Surprise SVD using the given hyper-parameters
     """
     print("Start training...")
-    train_data = pd.read_pickle(path=os.path.join(args.datastore, args.train_datapath))
+    train_data = pd.read_pickle(os.path.join(args.datastore, args.train_datapath))
     validation_data = pd.read_pickle(
-        path=os.path.join(args.datastore, args.validation_datapath)
+        os.path.join(args.datastore, args.validation_datapath)
     )
 
     svd = surprise.SVD(
